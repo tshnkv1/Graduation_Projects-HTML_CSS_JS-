@@ -1,0 +1,403 @@
+html, body, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 100%; }
+  
+  body {
+    background: #000;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+  }
+  
+  
+  
+  .main {
+    position: relative;
+    width: 100vMin;
+    height: 100vh;
+    margin: 0 auto;
+    background: lightgoldenrodyellow;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    outline: none;
+  }
+  
+  #Layer_1 {
+    width: 150px;
+  }
+  
+  div.main span {
+    font-family: Fascinate;
+    font-size: 50px;
+    color: #cb3a3e;
+  }
+  
+  div.main form {
+    font-family: Mukta;
+    font-weight: bolder;
+    font-size: 25px;
+  }
+  
+  #Error {
+    color: red;
+    font-family: Mukta;
+    font-size: 15px;
+    height: 25px;
+    transition-duration: 2s;
+  }
+  
+  #buttonPage {
+    width: 110px;
+    height: 30px;
+    position: relative;
+    background: #808080;
+    margin: 0 auto;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px #000;
+    cursor: pointer;
+    margin-top: 40px;
+    font-family: Mukta;
+    font-size: 17px;
+    color: white;
+  }
+  
+  .menu {
+    position: relative;
+    width: 100vMin;
+    height: 100vh;
+    margin: 0 auto;
+    background: lightgoldenrodyellow;
+    text-align: center;
+    display: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    outline: none;
+  }
+  
+  #Exit {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 50px;
+    cursor: pointer;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 1px 1px #000;
+  }
+  
+  #menu-name {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Fascinate;
+    font-size: 70px;
+    padding-top: 20px;
+  }
+  
+  #menu-name td:nth-child(even) {
+    color: #cb3a3e;
+    animation: MyAnimation 5s infinite;
+  }
+  
+  @keyframes MyAnimation
+  {
+      from { color: black; color: #cb3a3e }
+      50% { color: #cb3a3e; color: black }
+  }
+  
+  #menu-name td:nth-child(odd) {
+    color: black;
+    animation: MyAnimation2 5s infinite;
+  }
+  
+  @keyframes MyAnimation2
+  {
+      from { color: #cb3a3e; color: black }
+      50% { color: #black; color: #cb3a3e }
+  }
+  
+  .container {
+    position: relative;
+  }
+  
+  .menu-button {
+    font-family: Mukta;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  #menu-button1, #menu-button2, #menu-button3, #menu-button4, #menu-button5 {
+    margin: 30px auto;
+    background-color: white;
+    width: 50%;
+    border-radius: 20px;
+    box-shadow: 0 1px 1px #000;
+    cursor: pointer;
+  }
+  
+  #Sound {
+    width: 15px;
+  }
+  
+  .info-rules {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: lightslategray;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 10;
+    opacity: 0.93;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+  }
+  
+   .info-records {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 70%;
+    background: lightslategray;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+    z-index: 10;
+    opacity: 0.93;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+    display: none;
+  }
+  
+  
+  
+  div.info-rules p {
+    font-family: Mukta;
+    font-size: 16px;
+    color: white;
+    margin-top: 40px;
+    padding: 10px;
+  }
+  
+  #results {
+    font-family: Mukta;
+    font-size: 16px;
+    color: white;
+    margin-top: 40px;
+    padding: 10px;
+  }
+  
+  #bolder {
+    font-weight: bold;
+  }
+  
+  #close2, #close3, #close4 {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+  
+  #results {
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  #resultsTitle {
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .game {
+    position: relative;
+    width: 100vMin;
+    height: 100vh;
+    margin: 0 auto;
+    background: lightgoldenrodyellow;
+    text-align: center;
+    display: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    outline: none;
+  }
+  
+  #Exit2 {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 50px;
+    cursor: pointer;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 1px 1px #000;
+  }
+  
+  .management {
+    max-width: 60vh;
+    height: 20vh;
+    background: black;
+    margin: 0 auto;
+  }
+  
+  #game-stop {
+    width: 60%;
+    height: 90%;
+    background-color: black;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.8;
+    display: none;
+  }
+  
+  
+  .game-over {
+  
+  }
+  
+  
+  .game-over p {
+    font-family: Mukta;
+    font-size: 41px;
+    color: red;
+  }
+  
+  #score-results {
+    font-family: Mukta;
+    font-size: 30px;
+    color: white;
+    margin: 20px;
+  }
+  
+  #replay {
+    width: 30px;
+    height: 30px;
+    fill: white;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: transform 0.5s 
+  }
+  
+  #replay:hover { transform: scale(1.2); fill: red; }
+  
+  .logo {
+    
+  }
+  
+  #logo {
+    height: 70px;
+  }
+  
+  .control-menu {
+    background: white;
+    width: 60px;
+    height: 30px;
+    float: left;
+    border-radius: 0 20px 20px 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  #playOn {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    justify-content: space-around;
+    cursor: pointer;
+    float: left;
+    border-radius: 50%;
+    position: relative;
+    margin-top: 2px;
+    padding: 3px 7px;
+  }
+  
+  #playOff {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    justify-content: space-around;
+    cursor: pointer;
+    float: left;
+    border-radius: 50%;
+    position: relative;
+    margin-top: 2px;
+    padding: 3px 7px;
+  }
+  
+  .score {
+    background: white;
+    width: 150px;
+    height: 30px;
+    float: right;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 20px 0 0 20px;
+  }
+  
+  #score {
+    font-family: Mukta;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .pause {
+    background: white;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    float: left;
+    border-radius: 0 20px 20px 0;
+  }
+  
+  .container {
+    margin: 0 auto;
+    max-width: 60vh;
+    height: 70vh;
+    position: relative;
+  }
+  
+  #leftTouch {
+    width: 50%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    position: absolute;
+  }
+  
+  #rightTouch {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  #canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
