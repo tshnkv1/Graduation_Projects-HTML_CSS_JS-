@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './index.scss';
+import ProductBlock from './components/ProductBlock/ProductBlock';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ProductBlock />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,14 @@
+$font-stack: "Helvetica Neue",Helvetica,Arial,sans-serif; //шрифт
+$logo: url('./images/bg.png'); //фон
+$color: #69420a;
+
+body {
+  font-size: 14px;
+  line-height: 1.428571429;
+  margin: 0;
+  font-family: $font-stack;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $logo ;
+  color: $color;
+}
