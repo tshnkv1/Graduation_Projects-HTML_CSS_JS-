@@ -1,0 +1,130 @@
+.card {
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
+    width: 282px;
+    height: 405px;
+    float: left;
+    margin-right: 23px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    .card__Top {
+        width: 100%;
+        height: 6px;
+        background: #259609;
+        border-radius: 2px 2px 0px 0px;
+    }
+
+    .card__Logo {
+        position: absolute;
+        left: 42.91%;
+        right: 10.64%;
+        top: 7.41%;
+        bottom: 84.07%;
+    }
+
+    .card__Title_1 {
+        position: absolute;
+        height: 20px;
+        left: 30px;
+        right: 30px;
+        top: 94.5px;
+        font-family: Helvetica;
+        font-size: 13px;
+        line-height: 20px;
+        text-transform: uppercase;
+        color: #259609;
+    }
+
+    .card__Title_2 {
+        position: absolute;
+        height: 60px;
+        left: 30px;
+        right: 30px;
+        top: 124.5px;
+        font-family: Helvetica;
+        font-size: 20px;
+        line-height: 30px;
+        color: #3E3E3E;
+    }
+
+    .card__Info {
+        position: absolute;
+        height: 60px;
+        left: 30px;
+        right: 30px;
+        bottom: 103.92px;
+
+        .icon1 {
+            position: absolute;
+            width: 18px;
+            height: 15px;
+            top: 2.5px;
+            left: 1px;
+        }
+
+        .icon2 {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: 26.8px;
+            left: 2.5px;
+        }
+
+        .graduate {
+            position: absolute;
+            top: 4px;
+            left: 32px;
+        }
+
+        .weeks {
+            position: absolute;
+            top: 29px;
+            left: 32px;
+        }
+
+
+    }
+
+    .card__Button {
+        width: 222px;
+        height: 44px;
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        background: #259609;
+        border-radius: 3px;
+        text-align: center;
+        vertical-align: middle;
+
+        .card__Button__Text {
+            position: absolute;
+            left: 33%;
+            top: 32%;
+            font-family: Helvetica;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 16px;
+            align-items: center;
+            text-align: center;
+            text-transform: uppercase;color: #FFFFFF;
+        }
+    }
+}
+
+@media (max-width: 1220px) {
+    .card {
+        width: 48%;
+        margin: 0 5px 20px 5px;
+    }
+}
+
+@media ( max-width: 800px) {
+    .card {
+        width: 97%;
+        float: none;
+        margin: 0 auto 20px auto;
+    }
+}
