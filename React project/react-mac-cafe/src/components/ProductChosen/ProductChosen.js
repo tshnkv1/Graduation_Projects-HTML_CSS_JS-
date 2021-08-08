@@ -1,67 +1,46 @@
-import React from 'react'
+import React from 'react';
+//import PropTypes from 'prop-types';
+
 import './ProductChosen.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+class ProductChosen extends React.PureComponent {
 
-function ProductChosen() {
-  return (
-      <div className='container'>
-          <div className='mc-products-chosen-calculator-column'>
-              <h1>Узнайте стоимость заказа и энергетическую ценность продуктов</h1>
-              <div className='mc-products-chosen-salver-holder'>
-                  <div>
-                      <span className='mc-products-chosen-price-title'>Стоимость:</span>
-                      <span className='mc-products-chosen-price'>0</span>руб.
-                  </div>
-              </div>
-              <div className='mc-products-chosen-list-holder'>
-                  <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12 mc-chosenData-scroll-outerWrapper'>
-                      <span className='center-block mc-products-chosenlist-title'>
-                          Мой заказ
-                      </span>
-                  </div>
-              </div>
-              <div className='clearfix mc-separator-h'></div>
-              <div className='row mc-products-chosen-calories-holder'>
-                  <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                      <ul className='list-unstyled mc-products-chosenlist-data'>
-                          <li>
-                            <span className='mc-products-product-chosen-name'>кДж</span>
-                            <span className='mc-products-chosen-element-value' id='mc-elements-joule-count'>0</span>
-                          </li>
-                          <li>
-                            <span className='mc-products-product-chosen-name'>Энергетическая ценность, ккал</span>
-                            <span className='mc-products-chosen-element-value' id='mc-elements-calories-count'>0</span>
-                          </li>
-                          <li>
-                            <span className='mc-products-product-chosen-name'>Белки, г</span>
-                            <span className='mc-products-chosen-element-value' id='mc-elements-protein-count'>0</span>
-                          </li>
-                          <li>
-                            <span className='mc-products-product-chosen-name'>Жиры, г</span>
-                            <span className='mc-products-chosen-element-value' id='mc-elements-fat-count'>0</span>
-                          </li>
-                          <li>
-                            <span className='mc-products-product-chosen-name'>Углеводы, г</span>
-                            <span className='mc-products-chosen-element-value' id='mc-elements-carbohydrates-count'>0</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-              <div className='clearfix mc-separator-h'></div>
-              <div className='row mc-products-chosen-calories-recommended'>
-                  <div className='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                    Суточная норма калорий
-                    <ul className='list-unstyled mc-products-chosenlist-data'>
-                        <li><span>- Мужчины: 2500, ккал</span></li>
-                        <li><span>- Женщины: 2000, ккал</span></li>
-                        <li><span>- Дети: 1600, ккал</span></li>
-                    </ul>
-                  </div>
-              </div>
-          </div>
+  static propTypes = {
+    //name: PropTypes.string.isRequired,
+  };
+
+  render() {
+
+    return (
+      <div className="productChosen__container">
+        <div className="title">Узнайте стоимость заказа и энергетическую ценность продуктов</div>
+        <div className="selectedPrice">
+          <div>Стоимость:</div>
+          <div className="cost">0,00</div> руб.
+        </div>
+        <div className="selectedProduct">
+          <span>Мой заказ</span>
+          <div className="basket"></div>
+        </div>
+        <div className="energy">
+          <div>кДж <span>0</span></div>
+          <div>Энергетическая ценность, ккал <span>0</span></div>
+          <div>Белки, г <span>0</span></div>
+          <div>Жиры, г <span>0</span></div>
+          <div>Углеводы, г <span>0</span></div>
+        </div>
+        <div className="norm">
+          <div>Суточная норма калорий:</div>
+          <div>- Мужчины: 2500, ккал</div>
+          <div>- Женщины: 2000, ккал</div>
+          <div>- Дети: 1600, ккал</div>
+        </div>
       </div>
-  );
+    )
+    ;
+
+  }
+
 }
 
 export default ProductChosen;

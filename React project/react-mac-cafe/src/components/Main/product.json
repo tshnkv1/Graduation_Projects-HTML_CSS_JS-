@@ -1,0 +1,11 @@
+[ 
+    { "id":1, "name":"Биг-мак", "price": 5.50, "url": "../../images/Product/big-mac.png", "dzh": 2131, "cal": 509, "squirrels": 27, "fats": 26, "Carbohydrates": 42 },
+    { "id":2, "name":"Бокс", "price": 13.90, "url": "../../images/Product/box.png",  "dzh": 4763, "cal": 1136, "squirrels": 57, "fats": 52, "Carbohydrates": 109 },
+    { "id":3, "name":"Цезарь ролл", "price": 7.00, "url": "../../images/Product/ceasar-roll.png", "dzh": 2240, "cal": 537, "squirrels": 17, "fats": 34, "Carbohydrates": 41 },
+    { "id":4, "name":"Чикен примьер", "price": 6.20, "url": "../../images/Product/chiken-primary.png", "dzh": 2216, "cal": 530, "squirrels": 19, "fats": 31, "Carbohydrates": 45 },
+    { "id":5, "name":"Coca Cola", "price": 2.70, "url": "../../images/Product/coca-cola.png", "dzh": 721, "cal": 170, "squirrels": 0, "fats": 0, "Carbohydrates": 42 },
+    { "id":6, "name":"Картошель фри", "price": 2.60, "url": "../../images/Product/free.png", "dzh": 1000, "cal": 239, "squirrels": 3, "fats": 12, "Carbohydrates": 29 },
+    { "id":7, "name":"Пирожок", "price": 2.50, "url": "../../images/Product/pirozhok.png", "dzh": 880, "cal": 210, "squirrels": 3, "fats": 10, "Carbohydrates": 26 },
+    { "id":8, "name":"Роял-де-люкс", "price": 6.60, "url": "../../images/Product/royal_de_lux.jpeg", "dzh": 2373, "cal": 568, "squirrels": 27, "fats": 33, "Carbohydrates": 41 },
+    { "id":9, "name":"Стрипс", "price": 3.90, "url": "../../images/Product/strips.png",  "dzh": 941, "cal": 225, "squirrels": 13, "fats": 11, "Carbohydrates": 19 }
+]
