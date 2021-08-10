@@ -1,0 +1,58 @@
+.App {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.head-left {
+  width: 20%;
+  background: grey;
+  text-align: center;
+  border: 1px solid;
+}
+
+.head-right {
+  width: 70%;
+  background: grey;
+  text-align: center;
+  border: 1px solid;
+}
+
+#form {
+  width: 20%;
+  border: 1px solid;
+  position: relative;
+}
+
+#cnv {
+  width: 70%;
+  border: 1px solid;
+}
+
+.window {
+  height: 400px;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.square {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  width: 100px;
+  height: 100px;
+  background: yellow;
+}
+.square2 {
+  position: absolute;
+  left: 30px;
+  top: 160px;
+  width: 100px;
+  height: 100px;
+  background: aqua;
+}
