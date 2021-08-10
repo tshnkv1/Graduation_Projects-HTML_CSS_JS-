@@ -1,6 +1,42 @@
 import React, {Fragment} from 'react';
 import './Canvas.css'
 
+/* 
+В данном техническом задании не получилось выполнить все пункты задания
+
+//Фигуры перекрывают друг друга. 
+можно взять массив rect в котором содержаться все добалвенные фигуры и для этого массива можно применить манипуляцию элементами дерева
+.appendChild()
+чтобы по событию click находился выбранный квадрат в поле canvas и элемент массива принадлежащих этой фигуре становился последним в массиве, тогда он будет выше других при выделении
+
+//Нельзя выходить за пределы canvas при перетягивании
+циплом пройтись по массиву и каждому элементу массива сделать условие 
+        for (i in rect) {
+         if (rect[i].x + rect[i].w >cnv.width ){
+             rect[i].x = cnv.width - rect[i].x;
+         }
+
+         if (rect[i].x < 0 ){
+             rect[i].x = 0;
+         }
+
+         if (rect[i].y < 0 ){
+             rect[i].y = 0;
+         }
+
+         if (rect[i].y + rect[i].h > cnv.height ){
+             rect[i].y = cnv.height - rect[i].h;
+         }
+        }
+
+//удалить элемент
+для кнопки delete
+необходимо запомнить последний выделенный элемент по побытию click, и из массива rect удалить соответвующий элемент
+
+для перемещения
+область canvas подписать на событие dragover, сделать проверку что перемещается один из элементов, и на обработчик события dragover удалять выбранный элемент из массива rect
+*/
+
 class CanvasComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -179,12 +215,6 @@ class CanvasComponent extends React.Component {
             return rect;
             
          }
-
-         for (i in rect) {
-         if (rect[i].x + rect[i].w >cnv.width ){
-             rect[i].x = cnv.width - rect[i].x;
-         }
-        }
 
         setInterval(function () {  //рисование канваса
             ctx.clearRect(0, 0, cnv.width, cnv.height)
