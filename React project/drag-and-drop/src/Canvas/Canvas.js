@@ -1,40 +1,57 @@
 import React, {Fragment} from 'react';
 import './Canvas.css'
 
-/* 
-В данном техническом задании не получилось выполнить все пункты задания
+/*оставляю небольшой комментарий
 
-//Фигуры перекрывают друг друга. 
-можно взять массив rect в котором содержаться все добалвенные фигуры и для этого массива можно применить манипуляцию элементами дерева
-.appendChild()
-чтобы по событию click находился выбранный квадрат в поле canvas и элемент массива принадлежащих этой фигуре становился последним в массиве, тогда он будет выше других при выделении
+в данном проекте, который я должен был доработать, не получилось сделать одну вещь, от которой зависели пару других
 
-//Нельзя выходить за пределы canvas при перетягивании
-циплом пройтись по массиву и каждому элементу массива сделать условие 
-        for (i in rect) {
-         if (rect[i].x + rect[i].w >cnv.width ){
-             rect[i].x = cnv.width - rect[i].x;
-         }
+при добавлении в массив arrayShapes очередного элемента через перетягивание, не получилось передать помимо координат, ещё и id по которому в дальнейшем можно было бы взаимодействовать
 
-         if (rect[i].x < 0 ){
-             rect[i].x = 0;
-         }
+пытался сделать что то на подобии: 
+arrayShapes.push( figure: new Rect(50, 50, 100, 100), id: arrayShapes.length),
+]
 
-         if (rect[i].y < 0 ){
-             rect[i].y = 0;
-         }
+чтобы мне дал id фигуры
 
-         if (rect[i].y + rect[i].h > cnv.height ){
-             rect[i].y = cnv.height - rect[i].h;
-         }
-        }
+я бы реализовал удаление по последнему выделенному элементу, запомнил id в переменной, и потом при клике на кнопку вызывалась бы функция 
 
-//удалить элемент
-для кнопки delete
-необходимо запомнить последний выделенный элемент по побытию click, и из массива rect удалить соответвующий элемент
+// -- удаление элемента -- // 
 
-для перемещения
-область canvas подписать на событие dragover, сделать проверку что перемещается один из элементов, и на обработчик события dragover удалять выбранный элемент из массива rect
+        this.delete.current.addEventListener('click', () => {
+            console.log('удаляем');
+            arrayShapes.map( v => {
+                console.log('удалить');
+                if(v.id == selected.id ){
+                    delete(arrayShapes.v);
+                    console.log(arrayShapes);
+                }
+            })
+        });
+
+удаление через перетягивание 
+подписался на событие когда зажата мыш, и выбран элемент 
+и происхдит перетягивние элемента, и при  
+mouse.x < 0 
+mouse.y < 0
+я прохожу циклом по массиву и удаляю элемент с этим id
+
+поперемещению обьекта выделеного на передний план:
+
+по id я бы нашел выделенный элемент массива и вставил бы его в конец ветки
+
+до конца не получилось реализовать перемещение круга, 
+
+//если элемент выбран, он следует за мышью
+            if (selected) {
+                arrayShapes[i].stroke();
+                selected.x = mouse.x - selected.w / 2;// || mouse.x + selected.r/2
+                selected.y = mouse.y - selected.h / 2;// || mouse.y + selected.r/2
+                //selected.x = mouse.x - selected.x;
+                //selected.y = mouse.y - selected.y;
+                //selected.startposition = mouse.x - selected.r;
+                //selected.endposition = mouse.x - selected.r;
+            }
+            
 */
 
 class CanvasComponent extends React.Component {
@@ -48,213 +65,296 @@ class CanvasComponent extends React.Component {
         this.updateCanvas();
     }
     updateCanvas() {
+        
+        //координаты мыши
         var mouse = {
             x: 0,
             y: 0,
         }
 
+        //параметр элемента: true - выбран, false -  не выбран
         var selected = false;
-       // var drop = false;
 
+        var lastSelect = null;
+
+        var arrayShapes = []; // массив со всеми элементами
+        var i; //переменная для циклов
+
+        //параметры канваса
         const cnv = this.canvas.current;
+        //console.log(cnv);
         const ctx = cnv.getContext('2d');
         var width = 600, height = 350;
-
-        //квадрат
-        const figure = document.getElementById("it");
-        
-        figure.addEventListener('dragstart', handleDragstart);
-        figure.addEventListener('dragend', handleDragend);
-        //square.addEventListener('drag', handleDrag);
-
-        //dropZone
-        const figuresZone = document.getElementById('form');
-
-        figuresZone.addEventListener('dragenter', handleDragenter);
-        //figuresZone.addEventListener('dragleave', handleDragleave);
-        figuresZone.addEventListener('dragover', handleDragover);
-
-
-        cnv.addEventListener('dragenter', handleDragenter);
-        //cnv.addEventListener('dragleave', handleDragleave);
-        cnv.addEventListener('dragover', handleDragover);
-        cnv.addEventListener('drop', handleDrop);
-
-
-
-        //начало перемещаться
-        function handleDragstart(event) {
-            event.dataTransfer.setData("it", this.dataset.item);
-            console.log('dragstart', this);
-        };
-
-        //закончило перемещаться
-        function handleDragend(event) {
-            console.log('dragend', this);
-        };
-
-        //function handleDrag(event) {
-        //    console.log('drag', this);
-        //};
-
-        //над чем происходит перемещение
-        function handleDragenter(event) {
-            event.preventDefault();
-        };
-
-        //с чего ушло перемещение
-        /*function handleDragleave(event) {
-        };*/
-
-        //
-        function handleDragover(event) {
-            event.preventDefault();
-        }
-
-        let element = 0;
-        //куда уронили
-        function handleDrop(event) {
-            element = event.dataTransfer.getData("it");
-            console.log(element);
-            add(element);
-        };
-
 
         cnv.style.background = "whitesmoke";
         cnv.width = width;
         cnv.height = height;
 
+
+        // -- квадрат -- //
+
+        const square = document.getElementById("square");
+        //console.log(figure);
+
+        //подписка квадрата на события
+        square.addEventListener('dragstart', handleDragstart);//элемент начали перетаскивать
+        //square.addEventListener('dragend', handleDragend);//элемент закончили перетаскивать
+
+
+
+        // -- круг -- //
+
+        const circle = document.getElementById("circle");
+
+        //подписка квадрата на события
+        circle.addEventListener('dragstart', handleDragstart);//элемент начали перетаскивать
+        //circle.addEventListener('dragend', handleDragend);//элемент закончили перетаскивать
+
+
         
-        ctx.fillStyle = "yellow";
-        ctx.strokeStyle = "#001EFF";
-        ctx.lineWidth = 3;
+        // -- зона из которой выносят -- //
 
-        var Rect1 = function (x,y,w,h) {
-            this.x = x;
-            this.y = y;
-            this.w = w;
-            this.h = h;
-        }
+        const  startZone = document.getElementById('third');
 
-        Rect1.prototype = { //свойства 
-            draw: function () {
-                ctx.fillRect(this.x, this.y, this.w, this.h)
-            },
+        //подписка на событие стартовой зоны
+        //startZone.addEventListener('dragenter', handleDragenter); //когда в него входит перетаскиваемый объект
+        //startZone.addEventListener('dragleave', handleDragleave);//когда из него выходит перетаскиваемый обьект
+        //startZone.addEventListener('dragover', handleDragover);//когда в нем находиться перетаскиваемый элемент
+        
 
-            stroke: function() {
-                ctx.strokeRect(this.x, this.y, this.w, this.h,)
-            }
+
+        // -- зона canvas -- //
+        cnv.addEventListener('dragenter', handleDragenter);//когда в него входит перетаскиваемый объект
+        //cnv.addEventListener('dragleave', handleDragleave);//когда из него выходит перетаскиваемый обьект
+        cnv.addEventListener('dragover', handleDragover);//когда в нем находиться перетаскиваемый элемент
+        cnv.addEventListener('drop', handleDrop);
+
+        //для мыши
+        cnv.addEventListener('mousemove', handleMouseMove);
+        cnv.addEventListener('mousedown', handleMousedown);
+        cnv.addEventListener('mouseup', handleMouseup);
+
+        cnv.addEventListener('click', handleClick);
+
+
+
+        // -- функции перемещения -- //
+
+
+
+        // -- для фигур -- //
+
+        //начало перемещаться
+        function handleDragstart(event) {
+            event.dataTransfer.setData("id", event.target.id);
+        //    console.log('dragstart', event.target.id);
         };
 
-        /*var Rect2 = function (x,y,w,h) {
-            this.x = x;
-            this.y = y;
-            this.w = w;
-            this.h = h;
+        //закончило перемещаться
+        function handleDragend(event) {
+        //    console.log('dragend', this);
+        };
+
+
+        // -- для областей куда перетаскивают -- //
+
+        //над чем происходит перемещение
+        function handleDragenter(event) {
+            console.log('dragstart', this);
+            event.preventDefault();
+        };
+
+        //с чего ушло перемещение
+        //function handleDragleave(event) {
+        //    console.log('dragleave', this);
+        //};
+
+        function handleDragover(event) {
+            event.preventDefault();
         }
 
-        Rect2.prototype = { //свойства 
-            draw: function () {
-                ctx.fillRect(this.x, this.y, this.w, this.h)
-            },
-
-            stroke: function() {
-                ctx.strokeRect(this.x, this.y, this.w, this.h,)
-            }
-        }; */
-
-        /*var Circle = function (x,y,r,start, end) {
-            this.x = x;
-            this.y = y;
-            this.r = r;
-            this.start = start;
-            this.end = end;
-        }
-
-        Circle.prototype = {
-            draw: function () {
-                
-                ctx.arc(this.x, this.y, this.r, this.start, this.end);
-                ctx.fill();
-            },
-
-            stroke: function() {
-                ctx.fillStyle = "aqua";
-                ctx.strokeRect(this.x, this.y, this.w, this.h,)
-            }
-        } */
-
-        
-
-        var i, rect = [];
-
-        var isCursorInRect = function (rect) { //выбран ли элемент
-            
-            return (mouse.x > rect.x && mouse.x < rect.x + rect.w && mouse.y > rect.y && mouse.y < rect.y + rect.h );
-        
-        }
+        function handleDrop(event) {
+            let itemID = event.dataTransfer.getData("id");
+            console.log(itemID);
+            addItems(itemID);
+        };
 
 
-        /*for (i = 0; i < 2; i++) {
-            
-            rect.push( new Circle(100 + i * (100 + 20), 50, 0, Math.PI/2) );
-        
-        } */
+        // -- для мыши -- //
 
-
-        //добавление обьекта
-        function add(elem) {
-            console.log('добавляем функцию');
-            if(elem == 1){
-                rect.push( new Rect1(100, 100, 100, 100) );
-            }
-
-            //if(elem === 2){
-            //    rect.push( new Rect2(100, 100, 100, 100) );    
-            //}
-            return rect;
-            
-         }
-
-        setInterval(function () {  //рисование канваса
-            ctx.clearRect(0, 0, cnv.width, cnv.height)
-            for (i in rect) {
-                rect[i].draw();
-
-            if(isCursorInRect(rect[i])) {
-                rect[i].stroke();
-            }
-
-            }
-
-            if (selected) {
-                selected.x = mouse.x - selected.w / 2;
-                selected.y = mouse.y - selected.h / 2;
-            }
-
-        }, 30);
-
-        window.onmousemove = function (event) {
+        function handleMouseMove(event) {
             mouse.x = event.offsetX;
+        //    console.log(mouse.x);
             mouse.y = event.offsetY;
+        //    console.log(mouse.y);
         };
 
-        window.onmousedown = function () {
+        function handleMousedown(event) {
             if (!selected) {
-                var i;
-                for (i in rect) {
-                    if (isCursorInRect(rect[i])) {
-                        selected = rect[i];
+                for (i in arrayShapes) {
+                    if (isCursorInRect(arrayShapes[i])) {
+                        selected = arrayShapes[i];
+                        //arrayShapes[i].id = i;
                     }
                 }
             }
         };
 
-        window.onmouseup = function () {
+        function handleMouseup(event) {
             selected = false;
+        };
+        
+
+        function handleClick(event) {
+            console.log(event.id);
         }
 
-       
+
+
+        // -- отрисовка фигур -- //
+
+
+        // -- квадрат -- //
+        
+
+        var Rect = function (x,y,w,h) {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+        }
+
+
+        //методы
+        Rect.prototype = { 
+            draw: function () {
+                ctx.fillStyle = "yellow";
+                ctx.lineWidth = 3;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+            },
+
+            stroke: function() {
+                ctx.strokeStyle = "#001EFF";
+                ctx.strokeRect(this.x, this.y, this.w, this.h)
+            }
+        };
+
+
+        // -- круг -- //
+        
+
+        var Circle = function (x,y,r, startposition, endposition, id) {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+            this.startposition = startposition;
+            this.endposition = endposition;
+            this.id = id
+        }
+
+        Circle.prototype = {
+            draw: function() {
+                ctx.fillStyle = "aqua";
+                ctx.arc(this.x, this.y, this.r, this.startposition, this.endposition);
+                ctx.fill();
+            },
+            stroke: function() {
+                ctx.strokeStyle = "#001EFF";
+                ctx.stroke();
+            }
+        }
+
+
+        // -- добавление элементов в массив -- //
+
+
+        function addItems(object) {
+            switch(object) {
+
+                case "square":
+                    
+                   //for (i = 0; i<arrayShapes.length; i++) {
+                    //    if(arrayShapes[i] == "square") {
+                    //        console.log()
+
+                    //    }
+                    //}
+                    let itemSq = new Rect(50, 50, 100, 100);
+                    arrayShapes.push( itemSq);
+                    console.log(arrayShapes.length + 1);
+                    break;
+                
+                case "circle":
+                    let itemCi = new Circle(250, 100, 50, 0, 360);
+                    arrayShapes.push( itemCi );
+                    console.log(arrayShapes);
+                    break;
+            }
+        }
+
+
+
+        //добавление 2 квадратов в массив
+        //for (i = 0; i < 2; i++) {
+            //var item = { id}
+           //item.circle = new Circle(100 + i * (100 + 100), 100, 50, 0, 360);
+           // arrayShapes.push( new Rect(100 + i * (100 + 100), 100, 100, 100) );
+        
+        //}
+
+        console.log(arrayShapes);
+
+
+
+        // -- проверка находиться ли мышь в элементе -- //
+
+        var isCursorInRect = function (rect) {
+            
+            return (mouse.x > rect.x && mouse.x < rect.x + rect.w && mouse.y > rect.y && mouse.y < rect.y + rect.h 
+                || mouse.x < rect.x && mouse.x > rect.x - rect.r && mouse.y > rect.y && mouse.y < rect.y + rect.r);
+        
+        }
+
+
+        // -- функция отрисовки -- //
+        function CanvasDraw() {
+            
+            //очищаем canvas
+            ctx.clearRect(0, 0, cnv.width, cnv.height);
+
+            //рисуем все элементы массива
+            for (i in arrayShapes) {
+                arrayShapes[i].draw();
+                //console.log(arrayShapes[i].id);
+
+                if(isCursorInRect(arrayShapes[i])) {
+                    arrayShapes[i].stroke();
+                    lastSelect = arrayShapes[i].x;
+
+                }
+            }
+
+            //если элемент выбран, он следует за мышью
+            if (selected) {
+                arrayShapes[i].stroke();
+                selected.x = mouse.x - selected.w / 2;// || mouse.x + selected.r/2
+                selected.y = mouse.y - selected.h / 2;// || mouse.y + selected.r/2
+                //selected.x = mouse.x - selected.x;
+                //selected.y = mouse.y - selected.y;
+                //selected.startposition = mouse.x - selected.r;
+                //selected.endposition = mouse.x - selected.r;
+            }
+
+        }
+
+        // -- добавление setInterval -- //
+
+        setInterval(CanvasDraw, 30 );
+
+        console.log(arrayShapes);
+
+
+        // -- cохранение в JSON формате -- //
 
         this.save.current.addEventListener('click', () => {
             var canvasContents = cnv.toDataURL();
@@ -274,10 +374,8 @@ class CanvasComponent extends React.Component {
             a.click();
             document.body.removeChild(a);
         });
-
-        this.delete.current.addEventListener('click', () => {
-            
-        });
+        
+        
     }
 
     render() {

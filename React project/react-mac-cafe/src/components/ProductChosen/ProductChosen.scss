@@ -37,6 +37,17 @@
 
         .basket {
             min-height: 100px;
+            padding: 10px;
+            font-size: 14px;
+
+            .class {
+                display: flex;
+                justify-content: space-between;
+
+                .input {
+                    width: 40px;
+                }
+            }
         }
     }
 

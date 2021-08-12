@@ -19,13 +19,13 @@ class App extends React.Component {
   render () {
   return (
       <div className="App">
-        <div className="head-left">Figures</div>
-        <div className="head-right">Canvas</div>
-        <div id="form">
-          <div id="it" className="square" draggable={true} data-item={1}></div>
-          {/*<div id="it" className="square2" draggable={true} data-item={2}></div> */}
+        <div className="first">Figures</div>
+        <div className="second">Canvas</div>
+        <div id="third" className="third">
+          <div id="square" className="square" draggable={true} data-item={1}></div>
+          <div id="circle" className="circle" draggable={true} data-item={2}></div>
         </div>
-        <div id="cnv">
+        <div className="fourth">
           <CanvasComponent />
         </div>
       </div>

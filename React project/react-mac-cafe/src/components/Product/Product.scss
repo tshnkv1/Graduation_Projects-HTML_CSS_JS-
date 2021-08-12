@@ -1,13 +1,11 @@
 .product {
     width: 33.3%;
-    padding: 3px;
+    padding: 5px;
 
-    .picture {
+    .price {
         background-color: white;
+        min-height: 30px;
         
-        img {
-            width: 100%;
-        }
 
         .product-price {
             font-size: 1.125em;
@@ -15,7 +13,7 @@
             font-weight: bold;
             text-decoration: none;
             display: inline-block;
-            padding: 0 0 5px 15px;
+            padding: 15px 0 5px 15px;
         }
     }
 
@@ -40,7 +38,7 @@
             position: relative;
             border-radius: 10px;
 
-            button {
+            .product-plus {
                 background-color: red;
                 position: absolute;
                 top: 2px;

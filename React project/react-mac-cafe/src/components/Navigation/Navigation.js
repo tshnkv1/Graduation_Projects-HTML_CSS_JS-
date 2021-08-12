@@ -1,11 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 //import PropTypes from 'prop-types';
 
 import './Navigation.scss';
 
 import logo from '../../images/mc-logo-large-green.png';
 import search from '../../images/search.svg';
-import { NavLink } from 'react-router-dom';
 
 class Navigation extends React.PureComponent {
 

@@ -6,33 +6,28 @@ import './Product.scss';
 class Product extends React.PureComponent {
 
   static propTypes = {
-    id: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      url: PropTypes.string.isRequired,
-      dzh: PropTypes.number.isRequired,
-      cal: PropTypes.number.isRequired,
-      squirrels: PropTypes.number.isRequired,
-      fats: PropTypes.number.isRequired,
-      Carbohydrates: PropTypes.number.isRequired,
+      cbThisProduct: PropTypes.number.isRequired,
   };
+
+  hundleButtonCliked = (EO) => {
+    console.log(EO.target.key)
+    this.props.cbThisProduct(this.props.id);
+  }
 
   render() {
 
-    const url = this.props.url;
-
     return (
       <div className="product">
-          <div className="picture">
-              <img src={url}/>
-              <div className="product-price">{this.props.price}</div>
+          <div className="price">
+              <div className="product-price">{this.props.price}<span> руб.</span></div>
           </div>
           <div className="product-info">
                 <div className="product-name">{this.props.name}</div>
                 <div className="product-select">
-                    <button>
-                      +
-                    </button>
+                    <button onClick={this.hundleButtonCliked} className="product-plus">+</button>
                 </div>
               </div>
       </div>

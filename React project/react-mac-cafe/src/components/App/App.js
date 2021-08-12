@@ -1,12 +1,12 @@
-import React from 'react'
-import {Route, BrowserRouter} from 'react-router-dom';
-import isoFetch from 'isomorphic-fetch';
- //import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.scss';
 
+import Home from '../Home/Home';
 import Navigation from '../Navigation/Navigation';
-import Main from '../Main/Main';
+import Main2 from '../Main/Main2';
 import ProductChosen from '../ProductChosen/ProductChosen';
 import Quality from '../Quality/Quality';
 
@@ -14,72 +14,92 @@ import facebook from '../../images/facebook.svg';
 import vk from '../../images/vk.svg';
 
 class App extends React.PureComponent {
-  
-  static propTypes = {
-    //name: PropTypes.string.isRequired,
-  };
-
-  state = {
-    dataReady: false,
-    name: "???",
-    product: [],
-  };
 
   constructor(props) {
     super(props);
   }
+  
+  static propTypes = {
+    catalog:PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        count: PropTypes.number.isRequired,
+        dzh: PropTypes.number.isRequired,
+        cal: PropTypes.number.isRequired,
+        squirrels: PropTypes.number.isRequired,
+        fats: PropTypes.number.isRequired,
+        carbohydrates: PropTypes.number.isRequired,
+      })
+),
+  };
 
-  /*componentDidMount() {
-    this.loadData();
+  state = {
+    all: this.props.catalog,
+    product: [],
+    
   }
 
-  fetchError = (errorMessage) => {
-    console.error("showStr");
-  };
+  addToBasket = (iD) => {
+    //console.log('addToBasket '+iD);
+    let productWhenSelected = [...this.state.product];
+    if(productWhenSelected.length === 0) {
+      console.log("0");
+      let item = this.state.all.filter( prod => prod.id == iD);
+      productWhenSelected = [...productWhenSelected, item[0]];
+      console.log(productWhenSelected);
+    }
+    else {
+      let item = this.state.all.filter( prod => prod.id == iD);
+      console.log(item);
+      for ( let a = 0; a<productWhenSelected.length; a++) {
+        console.log(productWhenSelected);
+        console.log(productWhenSelected[a].id == item.id)
+      }
 
-  fetchSuccess = (loadedData) => {
-    console.log(loadedData);
-    this.setState({
-      dataReady:true,
-      product: loadedData,
-    });
-  };
 
-  loadData = () => {
 
-    isoFetch("http://webapp.armadealo.com/home.json", {
-        method: 'post',
-        headers: {
-            "Accept": "application/json",
-        },
-    })
-        .then( response => { // response - HTTP-ответ
-            if (!response.ok)
-                throw new Error("fetch error " + response.status); // дальше по цепочке пойдёт отвергнутый промис
-            else
-                return response.json(); // дальше по цепочке пойдёт промис с пришедшими по сети данными
-        })
-        .then( data => {
-            this.fetchSuccess(data); // передаём полезные данные в fetchSuccess, дальше по цепочке пойдёт успешный пустой промис
-        })
-        .catch( error => {
-            this.fetchError(error.message);
-        })
-    ;
 
-  };
-  */
+     /* for ( let a = 0; a<productWhenSelected.length; a++) {
+        console.log(productWhenSelected[a]);
+        console.log(productWhenSelected);
+        if(productWhenSelected[a].id !== iD) {
+            console.log('тогда')
+            let item = this.state.all.filter( prod => prod.id == iD);
+            console.log(item);
+            productWhenSelected = [...productWhenSelected, item[0]];
+            console.log(productWhenSelected);
+          }
+          console.log('ок');*/
+      
+      
+        /*else {
+          console.log('добавляем');
+          let item = this.state.all.filter( prod => prod.id == iD);
+          productWhenSelected = [...productWhenSelected, item[0]];
+          console.log(productWhenSelected);
+        }*/
+    }
+    //if(change){
+    this.setState( {product: productWhenSelected})
+   // }
+  }
 
   render() {
 
     return (
-      <BrowserRouter>
+      <Router>
     <div className="project">
+    {/*<Route path='/' exact component={Home}/>*/}
       <div className="container">
         <Navigation />
-        <Route path="/menu" component={Main} />
-        <Route path="/menu" component={ProductChosen} />
-        <Route path="/quality" component={Quality} />
+        {/*<Route path='/menu' component={Main}/>
+        <Route path='/menu' component={ProductChosen}/>
+        <Route path='/quality' component={Quality}/> */}
+        <Main2 catalogProduct={this.props.catalog} cbAddProduct={this.addToBasket}/>
+        <ProductChosen choseProduct={this.state.product}/>
+        {/*<Quality /> */}
       </div>
       <footer className="footer">
         <div>Правовая информация</div>
@@ -92,7 +112,7 @@ class App extends React.PureComponent {
         <div>© McDonald's Corporation</div>
       </footer>
     </div>
-    </BrowserRouter>
+    </Router>
     );
   }
 }

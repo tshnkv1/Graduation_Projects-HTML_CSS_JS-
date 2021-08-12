@@ -6,27 +6,27 @@
 
 }
 
-.head-left {
+.first {
   width: 20%;
   background: grey;
   text-align: center;
   border: 1px solid;
 }
 
-.head-right {
+.second {
   width: 70%;
   background: grey;
   text-align: center;
   border: 1px solid;
 }
 
-#form {
+.third {
   width: 20%;
   border: 1px solid;
   position: relative;
 }
 
-#cnv {
+.fourth {
   width: 70%;
   border: 1px solid;
 }
@@ -48,11 +48,12 @@
   height: 100px;
   background: yellow;
 }
-.square2 {
+.circle {
   position: absolute;
   left: 30px;
   top: 160px;
   width: 100px;
   height: 100px;
   background: aqua;
+  border-radius: 50%;
 }
